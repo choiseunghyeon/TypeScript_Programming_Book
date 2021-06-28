@@ -78,3 +78,28 @@ node ./dist/index.js
 
 어떤 값이 T 타입이라면 이 값을 가지고 어떤 일을 할 수 있고 없는지 알 수 있다.
 즉, 어떤 타입을 어떻게 사용하는지를 통해 타입 확인자는 특정 동작이 유효한지 아닌지 판단할 수 있다.
+
+**타입 리터럴(type literal)**
+
+- 오직 하나의 값을 나타내는 타입
+
+평범한 boolean 타입이 아니며 해당 타입이 가질 수 있는 특정한 하나의 값으로 타입을 한정한다.
+
+```typescript
+let e: true = true; // true
+let f: false = false; // false
+```
+
+**타입 지정 방법**
+
+- 타입스크립트가 타입을 추론
+- const를 이용해 타입 리터럴을 추론
+- 타입을 명시
+- 타입 리터럴 명시
+
+```typescript
+let num = 123; // number
+const PI = 3.14; // 3.14
+let num: number = 12345; // number;
+const PI: 3.14 = 3.14; // 3.14
+```
