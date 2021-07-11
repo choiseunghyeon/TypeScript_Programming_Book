@@ -103,3 +103,80 @@ const PI = 3.14; // 3.14
 let num: number = 12345; // number;
 const PI: 3.14 = 3.14; // 3.14
 ```
+
+**객체**
+
+- 인덱스 시그니처(index signature)
+  - [key: T]: U 같은 문법을 인덱스 시그니처라 한다.
+  - 어떤 객체가 여러 키를 가질 수 있음을 나타낸다. 키 (T)는 반드시 number나 string타입이어야 한다.
+  - readonly 한정자를 사용해 특정 필드를 읽기 전용으로 정의할 수 있다.
+  - 키 이름은 원하는 이름을 써도 된다.
+  ```typescript
+  let theater: {
+    [seatNumber: string]: string;
+  } = {
+    "11D": "최승현",
+    "12D": "홍길동",
+  };
+  ```
+
+## 타입 별칭
+
+- 하나의 타입을 두 번 정의할 수는 없다.
+
+```typescript
+type Name = "Choi";
+type Name = "Lee"; // 에러 TS2300: 'Name' 식별자를 중복 정의함
+```
+
+- 블록 영역에 적용된다.
+
+```typescript
+type Name = "Choi";
+
+let x = Math.random() < 0.5;
+
+if (x) {
+  type Name = "Lee"; // 위의 Name 정의를 덮어씀
+  let b: Name = "Lee";
+} else {
+  let c: Name = "Choi";
+}
+```
+
+## 유니온과 인터섹션 타입
+
+```typescript
+type Cat = { name: string; purrs: boolean };
+type Dog = { name: string; barks: boolean; wags: boolean };
+type CatOrDogOrBoth = Cat | Dog;
+type CatAndDog = Cat & Dog;
+
+// Cat
+let a: CatOrDogOrBoth = {
+  name: "hamburger",
+  purrs: true,
+};
+
+// Dog
+a = {
+  name: "Pizza",
+  barks: true,
+  wags: true,
+};
+
+// Both
+a = {
+  name: "hamburger",
+  purrs: true,
+  barks: true,
+  wags: true,
+};
+
+let b: CatAndDog = {
+  name: "Domino",
+  purrs: true,
+  barks: true,
+  wags: true,
+};
+```
